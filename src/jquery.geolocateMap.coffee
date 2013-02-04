@@ -2,7 +2,7 @@
 
   defaults =
 
-    # defaults for google maps api
+    # google maps api options
     google_maps:
       zoom: 0 # works only when markes lenght <= 1
       center: new google.maps.LatLng(0.0, 0.0)
@@ -18,8 +18,11 @@
       # }
     ]
 
-    markers_options: {
+    markers_settings: {
       fit_bounds: true # set map position to fit bounds of all markers
+
+      # google maps api options
+      draggable: true
     }
 
   methods =

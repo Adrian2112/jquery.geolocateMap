@@ -7,8 +7,8 @@
     function GeolocateMap($element, settings) {
       var markers_options;
       this.map = new google.maps.Map($element[0], settings['google_maps']);
-      this.markers = Marker.markers_from_objects(this.map, settings['markers']);
-      markers_options = settings['markers_options'];
+      this.markers = Marker.markers_from_objects(this.map, settings['markers'], settings['markers_settings']);
+      markers_options = settings['markers_settings'];
       if (markers_options['fit_bounds']) {
         if (this.markers.length > 2) {
           this.map.fitBounds(Marker.bounds_for_markers(this.markers));
@@ -32,8 +32,9 @@
         scaleControl: true
       },
       markers: [],
-      markers_options: {
-        fit_bounds: true
+      markers_settings: {
+        fit_bounds: true,
+        draggable: true
       }
     };
     methods = {
@@ -56,25 +57,26 @@
 
   Marker = (function() {
 
-    function Marker(map, settings) {
-      var latitude, longitude, pos;
-      latitude = settings['lat'];
-      longitude = settings['lng'];
+    function Marker(map, data, settings) {
+      var latitude, longitude, marker_position, pos;
+      latitude = data['lat'];
+      longitude = data['lng'];
       pos = new google.maps.LatLng(latitude, longitude);
-      this.gmark = new google.maps.Marker({
+      marker_position = {
         'position': pos,
-        'map': map,
-        'draggable': true
-      });
+        'map': map
+      };
+      settings = $.extend({}, settings, marker_position);
+      this.gmark = new google.maps.Marker(settings);
     }
 
     Marker.prototype.get_position = function() {
       return this.gmark.getPosition();
     };
 
-    Marker.markers_from_objects = function(map, markers) {
+    Marker.markers_from_objects = function(map, markers, settings) {
       return $(markers).map(function(i, e) {
-        return new Marker(map, e);
+        return new Marker(map, e, settings);
       });
     };
 

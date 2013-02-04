@@ -2,9 +2,9 @@ class GeolocateMap
   constructor: ($element, settings) ->
     @map = new google.maps.Map($element[0], settings['google_maps'])
 
-    @markers = Marker.markers_from_objects(@map, settings['markers'])
+    @markers = Marker.markers_from_objects(@map, settings['markers'], settings['markers_settings'])
 
-    markers_options = settings['markers_options']
+    markers_options = settings['markers_settings']
 
     if markers_options['fit_bounds']
       if @markers.length > 2

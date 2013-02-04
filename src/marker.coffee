@@ -1,24 +1,27 @@
 class Marker
     
-  constructor: (map, settings) ->
+  constructor: (map, data, settings) ->
 
-    latitude = settings['lat']
-    longitude = settings['lng']
+    latitude = data['lat']
+    longitude = data['lng']
     
     pos = new google.maps.LatLng(latitude, longitude)
 
-    @gmark = new google.maps.Marker({
+    marker_position = {
       'position': pos
       'map': map
-      'draggable': true
-    })
+    }
+
+    settings = $.extend({}, settings, marker_position)
+
+    @gmark = new google.maps.Marker(settings)
 
   get_position: ->
     @gmark.getPosition()
 
-  @markers_from_objects: (map, markers) ->
+  @markers_from_objects: (map, markers, settings) ->
     $(markers).map (i, e) ->
-      new Marker(map, e)
+      new Marker(map, e, settings)
 
   @bounds_for_markers: (markers) ->
     bounds = new google.maps.LatLngBounds()
