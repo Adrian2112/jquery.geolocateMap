@@ -13,9 +13,11 @@ class Marker
       'draggable': true
     })
 
+  get_position: ->
+    @gmark.getPosition()
+
   @markes_from_objects: (map, markers) ->
     $(markers).map (i, e) ->
-      console.log e
       new Marker(map, e)
 
   @bounds_for_markers: (markers) ->

@@ -5,13 +5,17 @@
   GeolocateMap = (function() {
 
     function GeolocateMap($element, settings) {
-      console.log("init");
+      var markers_options;
       this.map = new google.maps.Map($element[0], settings['google_maps']);
       this.rand = (new Date()).getTime();
-      console.log('set markers');
       this.markers = Marker.markes_from_objects(this.map, settings['markers']);
-      if (this.markers.length > 1) {
-        this.map.fitBounds(Marker.bounds_for_markers(this.markers));
+      markers_options = settings['markers_options'];
+      if (markers_options['fit_bounds']) {
+        if (this.markers.length > 2) {
+          this.map.fitBounds(Marker.bounds_for_markers(this.markers));
+        } else if (this.markers.length === 1) {
+          this.map.setCenter(this.markers[0].get_position());
+        }
       }
     }
 
@@ -28,12 +32,15 @@
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         scaleControl: true
       },
-      markers: []
+      markers: [],
+      markers_options: {
+        fit_bounds: true
+      }
     };
     methods = {
       init: function(args) {
         var settings;
-        settings = $.extend({}, defaults, args);
+        settings = $.extend(true, {}, defaults, args);
         return this.data("geolocate_map", new GeolocateMap(this, settings));
       }
     };
@@ -62,9 +69,12 @@
       });
     }
 
+    Marker.prototype.get_position = function() {
+      return this.gmark.getPosition();
+    };
+
     Marker.markes_from_objects = function(map, markers) {
       return $(markers).map(function(i, e) {
-        console.log(e);
         return new Marker(map, e);
       });
     };
