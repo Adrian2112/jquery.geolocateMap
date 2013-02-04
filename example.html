@@ -1,0 +1,36 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+  <script type="text/javascript" src="jquery.geolocateMap.js"></script>
+  <title>Example</title>
+  
+</head>
+<body>
+  <div id="map" style="height:300px;"></div>
+  <script type="text/javascript" charset="utf-8">
+  $("#map").geolocateMap({
+    markers: 
+      [
+        {"lat":"17.060477065746248", "lng":"-96.72543525695801"},
+        {"lat":"17.07714402", "lng":"-96.71353313"},
+        {"lat":"17.068128422248872", "lng":"-96.7195987701416"},
+        {"lat":"17.065593", "lng":"-96.724253"},
+        {"lat":"17.065020737526442", "lng":"-96.72539234161377"},
+        {"lat":"17.05811444402115", "lng":"-96.72695453226964"},
+        {"lat":"17.07610765289478", "lng":"-96.71955585479736"}
+    ]
+  })
+
+  </script>
+
+  <br /><br /><br />
+
+  <div id="map2" style="height:300px;"></div>
+  <script type="text/javascript" charset="utf-8">
+    $("#map2").geolocateMap()
+  </script>
+</body>
+</html>
