@@ -8,7 +8,7 @@
       var markers_options;
       this.map = new google.maps.Map($element[0], settings['google_maps']);
       this.rand = (new Date()).getTime();
-      this.markers = Marker.markes_from_objects(this.map, settings['markers']);
+      this.markers = Marker.markers_from_objects(this.map, settings['markers']);
       markers_options = settings['markers_options'];
       if (markers_options['fit_bounds']) {
         if (this.markers.length > 2) {
@@ -73,7 +73,7 @@
       return this.gmark.getPosition();
     };
 
-    Marker.markes_from_objects = function(map, markers) {
+    Marker.markers_from_objects = function(map, markers) {
       return $(markers).map(function(i, e) {
         return new Marker(map, e);
       });

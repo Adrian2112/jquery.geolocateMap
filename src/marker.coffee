@@ -16,7 +16,7 @@ class Marker
   get_position: ->
     @gmark.getPosition()
 
-  @markes_from_objects: (map, markers) ->
+  @markers_from_objects: (map, markers) ->
     $(markers).map (i, e) ->
       new Marker(map, e)
 
