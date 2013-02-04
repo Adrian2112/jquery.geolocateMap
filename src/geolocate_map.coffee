@@ -2,7 +2,6 @@ class GeolocateMap
   constructor: ($element, settings) ->
     @map = new google.maps.Map($element[0], settings['google_maps'])
 
-    @rand = (new Date()).getTime()
     @markers = Marker.markers_from_objects(@map, settings['markers'])
 
     markers_options = settings['markers_options']
