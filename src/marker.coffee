@@ -4,7 +4,7 @@ class Marker
 
     latitude = data['lat']
     longitude = data['lng']
-    
+     
     pos = new google.maps.LatLng(latitude, longitude)
 
     marker_position = {
@@ -12,7 +12,9 @@ class Marker
       'map': map
     }
 
-    settings = $.extend({}, settings, marker_position)
+    # replace default settings for all markers
+    # with this markers 'data' settings
+    settings = $.extend({}, settings, data, marker_position)
 
     @gmark = new google.maps.Marker(settings)
 

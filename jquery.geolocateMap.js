@@ -66,7 +66,7 @@
         'position': pos,
         'map': map
       };
-      settings = $.extend({}, settings, marker_position);
+      settings = $.extend({}, settings, data, marker_position);
       this.gmark = new google.maps.Marker(settings);
     }
 
