@@ -15,13 +15,15 @@
       # {
       #   lat: 'latitude'
       #   lng: 'longitude'
+      #   other google api marker options
+      #   (this options overrides the markers_settings just for this marker)
       # }
     ]
 
     markers_settings: {
-      fit_bounds: true # set map position to fit bounds of all markers
+      fit_bounds: true # set map to fit bounds of all markers
 
-      # google maps api options
+      # google maps api options for all markers
       draggable: true
     }
 
