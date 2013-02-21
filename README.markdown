@@ -1,7 +1,7 @@
 # jquery.geolocateMap
 Makes it easy to create a google map with many markers
 
-[Demo](http://adrian2112.github.com/jquery.geolocateMap/demo/demo.html)
+[Demo](http://icalialabs.github.com/jquery.geolocateMap/demo/demo.html)
 
 ## Usage
 
