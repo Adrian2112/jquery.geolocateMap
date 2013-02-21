@@ -61,3 +61,11 @@ defaults = {
 }
 
 ```
+
+
+# Development
+Compile with
+```shellscript
+coffee --watch -cj jquery.geolocateMap.js src/*.coffee
+```
+
