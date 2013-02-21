@@ -2,7 +2,12 @@
 Makes it easy to create a google map with many markers
 
 ## Usage
+
+**google maps javascript should be loaded before jquery.geolocateMap**
+
 ```javascript
+
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src="PATH_TO_SRC/jquery.geolocateMap.js" type="text/javascript"></script>
 
 <script>
