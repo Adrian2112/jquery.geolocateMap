@@ -17,6 +17,12 @@
       #   lng: 'longitude'
       #   other google api marker options
       #   (this options overrides the markers_settings just for this marker)
+      #
+      #   sync_inputs: {
+      #     lat: '#lat'
+      #     lng: '#lng'
+      #     address: '#address'
+      #   }
       # }
     ]
 

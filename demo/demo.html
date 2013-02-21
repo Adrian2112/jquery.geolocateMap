@@ -25,15 +25,26 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
 
+      // show code html
       $(".example").each(function(i, example){
         $example = $(example);
         html = $example.children("script").html();
         $example.find(".show_code code").html(html);
       });
 
+      // show code link
       $(".show_code .js-show_code").click(function(){
         $(this).siblings("pre").toggle('slow');
       })
+
+      // section list
+      $(".example").each(function(i, example){
+        $example = $(example);
+        id = $example.attr("id");
+        name = $example.children("h2").html();
+
+        $("#sections").append("<li><a href='#"+id+"'> "+name+"</a></li>");
+      });
     });
   </script>
   
@@ -41,8 +52,9 @@
 <body>
   <div class="container">
     <h1>jquery.geolocateMap</h1>
+    <ul id='sections'></ul>
 
-    <div class='example'>
+    <div class='example' id="one_marker">
       <h2>One Marker</h2>
     
       <div id="map" style="height:300px;"></div>
@@ -54,7 +66,7 @@
           markers: 
             [
               {"lat":"17.07610765289478", "lng":"-96.71955585479736"}
-          ]
+            ]
         });
       </script>
   
@@ -64,7 +76,7 @@
       </div>
     </div>
     
-    <div class='example'>
+    <div class='example' id="marker_with_settings">
       <h2>Marker with custom settings</h2>
       <div id="map2" style="height:300px;"></div>
       <script type="text/javascript" charset="utf-8">
@@ -118,7 +130,7 @@
       </div>
     </div>
   
-    <div class="example">
+    <div class="example" id="html5_geolocation">
       <h2>HTML5 gelocation</h2>
       <div id="map3" style="height:300px;"></div>
       <script type="text/javascript" charset="utf-8">
@@ -128,6 +140,36 @@
             draggable: false
           },
           locate_me: true
+        });
+      </script>
+  
+      <div class="show_code">
+        <a href="javascript: void(0);" class="js-show_code">show code</a>
+        <pre> <code data-language="javascript"> </code> </pre>
+      </div>
+    </div>
+  
+    <div class="example" id="input_sync">
+      <h2>Input synchronization</h2>
+      <div id="map4" style="height:300px;"></div>
+      Lat <input type="text" id="map4_lat" / > <br />
+      Lng <input type="text" id="map4_lng" / > <br />
+      Address <input type="text" id="map4_address" / > <br />
+      <script type="text/javascript" charset="utf-8">
+        $("#map4").geolocateMap({
+          google_maps: {
+            zoom: 17
+          },
+          locate_me: true,
+          locate_me_marker: 
+            {
+              "sync_inputs": {
+                lat: '#map4_lat',
+                lng: '#map4_lng',
+                address: '#map4_address'
+              },
+              draggable: true
+            }
         });
       </script>
   

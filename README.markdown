@@ -52,12 +52,18 @@ defaults = {
 
   // list of markers to display
   markers: [
-     // {
-     //  lat: 'latitude'
-     //  lng: 'longitude'
-     //  other google api marker options
-     //  (this options overrides the markers_settings just for this marker)
-     // }
+    // {
+    //   lat: 'latitude'
+    //   lng: 'longitude'
+    //   other google api marker options
+    //   (this options overrides the markers_settings just for this marker)
+    //   
+    //   sync_inputs: {
+    //     lat: '#lat' // input id
+    //     lng: '#lng' 
+    //     address: '#address'
+    //   }
+    // }
   ],
 
   markers_settings: {
@@ -78,6 +84,8 @@ defaults = {
     //     new google.maps.Point(0, 0),
     //     new google.maps.Point(12, 35)
     // )
+    // sync_inputs: {} // same as markers
+    //
     draggable: false
   }
 }
