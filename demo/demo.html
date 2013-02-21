@@ -24,8 +24,15 @@
 
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
+
+      $(".example").each(function(i, example){
+        $example = $(example);
+        html = $example.children("script").html();
+        $example.find(".show_code code").html(html);
+      });
+
       $(".show_code .js-show_code").click(function(){
-        $(this).siblings("pre").toggle('slow')
+        $(this).siblings("pre").toggle('slow');
       })
     });
   </script>
@@ -35,168 +42,100 @@
   <div class="container">
     <h1>jquery.geolocateMap</h1>
 
-    <h2>One Marker</h2>
+    <div class='example'>
+      <h2>One Marker</h2>
+    
+      <div id="map" style="height:300px;"></div>
+      <script type="text/javascript" charset="utf-8">
+        $("#map").geolocateMap({
+          google_maps: {
+            zoom: 17
+          },
+          markers: 
+            [
+              {"lat":"17.07610765289478", "lng":"-96.71955585479736"}
+          ]
+        });
+      </script>
   
-    <div id="map" style="height:300px;"></div>
-    <script type="text/javascript" charset="utf-8">
-      $("#map").geolocateMap({
-        google_maps: {
-          zoom: 17
-        },
-        markers: 
-          [
-            {"lat":"17.07610765289478", "lng":"-96.71955585479736"}
-        ]
-      });
-    </script>
-
-    <div class="show_code">
-      <a href="javascript: void(0);" class="js-show_code">show code</a>
-      <pre>
-      <code data-language="javascript">
-      $("#map").geolocateMap({
-        google_maps: {
-          zoom: 17
-        },
-        markers: 
-          [
-            {"lat":"17.07610765289478", "lng":"-96.71955585479736"}
-        ]
-      });
-      </code>
-      </pre>
+      <div class="show_code">
+        <a href="javascript: void(0);" class="js-show_code">show code</a>
+        <pre> <code data-language="javascript"> </code> </pre>
+      </div>
     </div>
     
+    <div class='example'>
+      <h2>Marker with custom settings</h2>
+      <div id="map2" style="height:300px;"></div>
+      <script type="text/javascript" charset="utf-8">
   
-    <br /><br /><br />
+      var pinImage = new google.maps.MarkerImage(
+          "https://chart.googleapis.com/chart?chst=d_map_xpin_letter&chld=pin_star|A|FF0000|000000",
+          new google.maps.Size(21, 34),
+          new google.maps.Point(0,0),
+          new google.maps.Point(10, 34)
+      );
   
-    <h2>Marker with custom settings</h2>
-    <div id="map2" style="height:300px;"></div>
-    <script type="text/javascript" charset="utf-8">
-
-    var pinImage = new google.maps.MarkerImage(
-        "https://chart.googleapis.com/chart?chst=d_map_xpin_letter&chld=pin_star|A|FF0000|000000",
-        new google.maps.Size(21, 34),
-        new google.maps.Point(0,0),
-        new google.maps.Point(10, 34)
-    );
-
-    var pinShadow = new google.maps.MarkerImage(
-        "http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
-        new google.maps.Size(40, 37),
-        new google.maps.Point(0, 0),
-        new google.maps.Point(12, 35)
-    );
+      var pinShadow = new google.maps.MarkerImage(
+          "http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+          new google.maps.Size(40, 37),
+          new google.maps.Point(0, 0),
+          new google.maps.Point(12, 35)
+      );
+    
   
-
-    $("#map2").geolocateMap({
-      markers: 
-        [
-          
-          {"lat":"17.060477065746248", "lng":"-96.72543525695801",
-            icon: pinImage,
-            shadow: pinShadow,
-            draggable: true
-
-          },
-          {"lat":"17.07714402", "lng":"-96.71353313"},
-          {"lat":"17.068128422248872", "lng":"-96.7195987701416"},
-          {"lat":"17.065593", "lng":"-96.724253"},
-          {"lat":"17.065020737526442", "lng":"-96.72539234161377"},
-          {"lat":"17.05811444402115", "lng":"-96.72695453226964"},
-          {"lat":"17.07610765289478", "lng":"-96.71955585479736"}
-      ],
-      google_maps: {
-        zoom: 20
-      },
-      markers_settings: {
-        draggable: false,
-        animation: google.maps.Animation.DROP
-      }
-    });
-
-    </script>
-
-    <div class="show_code">
-      <a href="javascript: void(0);" class="js-show_code">show code</a>
-      <pre>
-      <code data-language="javascript">
-    var pinImage = new google.maps.MarkerImage(
-        "https://chart.googleapis.com/chart?chst=d_map_xpin_letter&chld=pin_star|A|FF0000|000000",
-        new google.maps.Size(21, 34),
-        new google.maps.Point(0,0),
-        new google.maps.Point(10, 34)
-    );
-
-    var pinShadow = new google.maps.MarkerImage(
-        "http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
-        new google.maps.Size(40, 37),
-        new google.maps.Point(0, 0),
-        new google.maps.Point(12, 35)
-    );
-
-
-    $("#map2").geolocateMap({
-      markers: 
-        [
-
-          {"lat":"17.060477065746248", "lng":"-96.72543525695801",
-            icon: pinImage,
-            shadow: pinShadow,
-            draggable: true
-
-          },
-          {"lat":"17.07714402", "lng":"-96.71353313"},
-          {"lat":"17.068128422248872", "lng":"-96.7195987701416"},
-          {"lat":"17.065593", "lng":"-96.724253"},
-          {"lat":"17.065020737526442", "lng":"-96.72539234161377"},
-          {"lat":"17.05811444402115", "lng":"-96.72695453226964"},
-          {"lat":"17.07610765289478", "lng":"-96.71955585479736"}
-      ],
-      google_maps: {
-        zoom: 20
-      },
-      markers_settings: {
-        draggable: false,
-        animation: google.maps.Animation.DROP
-      }
-    });
-
-      </code>
-      </pre>
+      $("#map2").geolocateMap({
+        markers: 
+          [
+            
+            {"lat":"17.060477065746248", "lng":"-96.72543525695801",
+              icon: pinImage,
+              shadow: pinShadow,
+              draggable: true
+  
+            },
+            {"lat":"17.07714402", "lng":"-96.71353313"},
+            {"lat":"17.068128422248872", "lng":"-96.7195987701416"},
+            {"lat":"17.065593", "lng":"-96.724253"},
+            {"lat":"17.065020737526442", "lng":"-96.72539234161377"},
+            {"lat":"17.05811444402115", "lng":"-96.72695453226964"},
+            {"lat":"17.07610765289478", "lng":"-96.71955585479736"}
+        ],
+        google_maps: {
+          zoom: 20
+        },
+        markers_settings: {
+          draggable: false,
+          animation: google.maps.Animation.DROP
+        }
+      });
+  
+      </script>
+  
+      <div class="show_code">
+        <a href="javascript: void(0);" class="js-show_code">show code</a>
+        <pre> <code data-language="javascript"> </code> </pre>
+      </div>
     </div>
   
-    <br /><br /><br />
-
-    <h2>HTML5 gelocation</h2>
-    <div id="map3" style="height:300px;"></div>
-    <script type="text/javascript" charset="utf-8">
-      $("#map3").geolocateMap({
-        google_maps: {
-          zoom: 17,
-          draggable: false
-        },
-        locate_me: true
-      });
-    </script>
-
-    <div class="show_code">
-      <a href="javascript: void(0);" class="js-show_code">show code</a>
-      <pre>
-      <code data-language="javascript">
-      $("#map3").geolocateMap({
-        google_maps: {
-          zoom: 17,
-          draggable: false
-        },
-        locate_me: true
-      });
-
-      </code>
-      </pre>
-    </div>
+    <div class="example">
+      <h2>HTML5 gelocation</h2>
+      <div id="map3" style="height:300px;"></div>
+      <script type="text/javascript" charset="utf-8">
+        $("#map3").geolocateMap({
+          google_maps: {
+            zoom: 17,
+            draggable: false
+          },
+          locate_me: true
+        });
+      </script>
   
-    <br /><br /><br />
+      <div class="show_code">
+        <a href="javascript: void(0);" class="js-show_code">show code</a>
+        <pre> <code data-language="javascript"> </code> </pre>
+      </div>
+    </div>
   
   </div>
 </body>
