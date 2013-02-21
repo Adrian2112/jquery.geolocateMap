@@ -99,3 +99,5 @@ Compile with
 coffee --watch -cj jquery.geolocateMap.js src/*.coffee
 ```
 
+# Author
+* [Adrián González](http://github.com/Adrian2112)
