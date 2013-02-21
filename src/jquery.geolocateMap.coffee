@@ -27,6 +27,18 @@
       draggable: true
     }
 
+    locate_me: false
+    locate_me_marker: {
+      # icon: "https://chart.googleapis.com/chart?chst=d_map_xpin_letter&chld=pin%7C+%7C0000FF%7C000000%7CFF0000"
+      # shadow: new google.maps.MarkerImage(
+      #     "http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+      #     new google.maps.Size(40, 37),
+      #     new google.maps.Point(0, 0),
+      #     new google.maps.Point(12, 35)
+      # )
+      draggable: false
+    }
+
   methods =
     init: (args) ->
       settings = $.extend true, {}, defaults, args

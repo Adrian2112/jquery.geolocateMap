@@ -12,3 +12,14 @@ class GeolocateMap
       else if @markers.length == 1
         @map.setCenter(@markers[0].get_position())
 
+    if settings['locate_me'] and navigator.geolocation
+      navigator.geolocation.getCurrentPosition(
+        ((position) =>
+          @marker_me = new Marker(@map,{lat: position.coords.latitude, lng: position.coords.longitude}, settings['locate_me_marker'])
+          @map.setCenter(@marker_me.get_position())
+        ),
+        ((msg) ->
+          console.log("geolocation error: #{JSON.stringify msg}")
+        )
+      )
+

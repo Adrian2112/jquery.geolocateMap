@@ -27,6 +27,7 @@ Makes it easy to create a google map with many markers
         animation: google.maps.Animation.DROP
       }
     })
+
 </script>
 ```
 
@@ -42,7 +43,7 @@ defaults = {
     scaleControl: true
   },
 
- // list of markers to display
+  // list of markers to display
   markers: [
      // {
      //  lat: 'latitude'
@@ -50,14 +51,28 @@ defaults = {
      //  other google api marker options
      //  (this options overrides the markers_settings just for this marker)
      // }
-   ],
+  ],
 
-   markers_settings: {
-    fit_bounds: true, // set map to fit bounds of all markers
+  markers_settings: {
+   fit_bounds: true, // set map to fit bounds of all markers
 
-    // google maps api options for all markers
-    draggable: true
-   }
+   // google maps api options for all markers
+   draggable: true
+  },
+
+  locate_me: false,
+  locate_me_marker: {
+    // google api marker settings
+    //
+    // icon: "https://chart.googleapis.com/chart?chst=d_map_xpin_letter&chld=pin%7C+%7C0000FF%7C000000%7CFF0000"
+    // shadow: new google.maps.MarkerImage(
+    //     "http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+    //     new google.maps.Size(40, 37),
+    //     new google.maps.Point(0, 0),
+    //     new google.maps.Point(12, 35)
+    // )
+    draggable: false
+  }
 }
 
 ```

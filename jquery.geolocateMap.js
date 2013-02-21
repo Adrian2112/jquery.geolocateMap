@@ -5,7 +5,8 @@
   GeolocateMap = (function() {
 
     function GeolocateMap($element, settings) {
-      var markers_options;
+      var markers_options,
+        _this = this;
       this.map = new google.maps.Map($element[0], settings['google_maps']);
       this.markers = Marker.markers_from_objects(this.map, settings['markers'], settings['markers_settings']);
       markers_options = settings['markers_settings'];
@@ -15,6 +16,17 @@
         } else if (this.markers.length === 1) {
           this.map.setCenter(this.markers[0].get_position());
         }
+      }
+      if (settings['locate_me'] && navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((function(position) {
+          _this.marker_me = new Marker(_this.map, {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }, settings['locate_me_marker']);
+          return _this.map.setCenter(_this.marker_me.get_position());
+        }), (function(msg) {
+          return console.log("geolocation error: " + (JSON.stringify(msg)));
+        }));
       }
     }
 
@@ -35,6 +47,10 @@
       markers_settings: {
         fit_bounds: true,
         draggable: true
+      },
+      locate_me: false,
+      locate_me_marker: {
+        draggable: false
       }
     };
     methods = {
