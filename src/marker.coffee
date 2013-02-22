@@ -60,12 +60,14 @@ class Marker
 
         $address.on 'change', =>
           geocoder = new google.maps.Geocoder()
-          geocoder.geocode {address: $address.val()}, (result, status) ->
+          geocoder.geocode {address: $address.val()}, (result, status) =>
             position = result[0].geometry.location
-            map = @.getMap()
+            map = @gmark.getMap()
             map.setCenter(position)
             map.setZoom(15)
             @.set_position(position)
+            google.maps.event.trigger(@gmark, 'dragend')
+            
 
       #on marker move
       google.maps.event.addListener @gmark, 'dragend', =>

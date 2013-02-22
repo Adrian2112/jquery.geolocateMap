@@ -146,10 +146,11 @@
             }, function(result, status) {
               var map, position;
               position = result[0].geometry.location;
-              map = this.getMap();
+              map = _this.gmark.getMap();
               map.setCenter(position);
               map.setZoom(15);
-              return this.set_position(position);
+              _this.set_position(position);
+              return google.maps.event.trigger(_this.gmark, 'dragend');
             });
           });
         }
@@ -195,6 +196,6 @@
 
   })();
 
-  version = 0.1;
+  version = "0.2.1";
 
 }).call(this);
