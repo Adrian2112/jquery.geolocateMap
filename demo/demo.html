@@ -26,26 +26,36 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
 
-      // show code html
       $(".example").each(function(i, example){
-        $example = $(example);
-        html = $example.children("script").html();
+        var $example = $(example);
+
+        // show code link
+        $example.append(""+
+          "<div class='show_code'>" +
+          "  <span style='float:right;'><a href='#sections'>Top</a></span>" +
+          "  <a href='javascript: void(0);' class='js-show_code'>show code</a>" +
+          "  <pre> <code data-language='javascript'> </code> </pre>" +
+          "</div>" +
+        "");
+
+        // show code html
+        var html = $example.children("script").html();
         $example.find(".show_code code").html(html);
-      });
 
-      // show code link
-      $(".show_code .js-show_code").click(function(){
-        $(this).siblings("pre").toggle('slow');
-      })
-
-      // section list
-      $(".example").each(function(i, example){
-        $example = $(example);
-        id = $example.attr("id");
-        name = $example.children("h2").html();
+        // section list
+        var id = "example_"+i;
+        $example.attr("id", id);
+        var name = $example.children("h2").html();
 
         $("#sections").append("<li><a href='#"+id+"'> "+name+"</a></li>");
       });
+
+
+      // show code link
+      $(document).on('click', '.show_code .js-show_code', function(){
+        $(this).siblings("pre").toggle('slow');
+      })
+
     });
   </script>
   
@@ -55,7 +65,7 @@
     <h1>jquery.geolocateMap</h1>
     <ul id='sections'></ul>
 
-    <div class='example' id="one_marker">
+    <div class='example'>
       <h2>One Marker</h2>
     
       <div id="map" style="height:300px;"></div>
@@ -71,13 +81,9 @@
         });
       </script>
   
-      <div class="show_code">
-        <a href="javascript: void(0);" class="js-show_code">show code</a>
-        <pre> <code data-language="javascript"> </code> </pre>
-      </div>
     </div>
     
-    <div class='example' id="marker_with_settings">
+    <div class='example'>
       <h2>Marker with custom settings</h2>
       <div id="map2" style="height:300px;"></div>
       <script type="text/javascript" charset="utf-8">
@@ -125,13 +131,9 @@
   
       </script>
   
-      <div class="show_code">
-        <a href="javascript: void(0);" class="js-show_code">show code</a>
-        <pre> <code data-language="javascript"> </code> </pre>
-      </div>
     </div>
   
-    <div class="example" id="html5_geolocation">
+    <div class="example">
       <h2>HTML5 gelocation</h2>
       <div id="map3" style="height:300px;"></div>
       <script type="text/javascript" charset="utf-8">
@@ -144,13 +146,9 @@
         });
       </script>
   
-      <div class="show_code">
-        <a href="javascript: void(0);" class="js-show_code">show code</a>
-        <pre> <code data-language="javascript"> </code> </pre>
-      </div>
     </div>
   
-    <div class="example" id="input_sync">
+    <div class="example">
       <h2>Input synchronization</h2>
       <div id="map4" style="height:300px;"></div>
       Lat <input type="text" id="map4_lat" / > <br />
@@ -174,13 +172,9 @@
         });
       </script>
   
-      <div class="show_code">
-        <a href="javascript: void(0);" class="js-show_code">show code</a>
-        <pre> <code data-language="javascript"> </code> </pre>
-      </div>
     </div>
 
-    <div class="example" id="google_objects">
+    <div class="example">
       <h2>Accessing google maps and markers objects directly</h2>
       <div id="map5" style="height:300px;"></div>
       <em>From direct google objects (read source code)</em><br />
@@ -204,10 +198,6 @@
         $("#map5_markers").html(first_marker.getPosition().toString());
       </script>
   
-      <div class="show_code">
-        <a href="javascript: void(0);" class="js-show_code">show code</a>
-        <pre> <code data-language="javascript"> </code> </pre>
-      </div>
     </div>
   
   </div>
