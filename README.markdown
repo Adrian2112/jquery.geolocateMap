@@ -92,6 +92,21 @@ defaults = {
 
 ```
 
+if you need to access the map or the markers from google maps you can do
+it as follow
+
+```javascript
+// google map
+$('#map').data('geolocate_map').map
+
+// list of markers
+$('#map').data('geolocate_map').markers
+
+// google marker
+$('#map').data('geolocate_map').markers[0].gmark
+
+```
+
 
 # Development
 Compile with
