@@ -14,6 +14,7 @@
   .container {
     width: 960px;
     margin: 0 auto;
+    margin-bottom: 150px;
   }
 
   pre {
@@ -171,6 +172,36 @@
               draggable: true
             }
         });
+      </script>
+  
+      <div class="show_code">
+        <a href="javascript: void(0);" class="js-show_code">show code</a>
+        <pre> <code data-language="javascript"> </code> </pre>
+      </div>
+    </div>
+
+    <div class="example" id="google_objects">
+      <h2>Accessing google maps and markers objects directly</h2>
+      <div id="map5" style="height:300px;"></div>
+      <em>From direct google objects (read source code)</em><br />
+      Map zoom: <span id="map5_map"></span><br />
+      First marker position: <span id="map5_markers"></span>
+      <script type="text/javascript" charset="utf-8">
+        $("#map5").geolocateMap({
+          google_maps: {
+            zoom: 17
+          },
+          markers: [
+            {"lat":"17.07714402", "lng":"-96.71353313"},
+            {"lat":"17.068128422248872", "lng":"-96.7195987701416"}
+          ]
+        });
+
+        var google_map = $("#map5").geolocateMap("google_map");
+        var first_marker = $("#map5").geolocateMap("google_markers")[0];
+
+        $("#map5_map").html(google_map.getZoom().toString());
+        $("#map5_markers").html(first_marker.getPosition().toString());
       </script>
   
       <div class="show_code">

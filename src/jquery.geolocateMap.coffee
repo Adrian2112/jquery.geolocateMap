@@ -49,6 +49,14 @@
     init: (args) ->
       settings = $.extend true, {}, defaults, args
       this.data("geolocate_map", (new GeolocateMap(this, settings)))
+
+    google_map: ->
+      this.data("geolocate_map").map
+
+    google_markers: ->
+      $(this.data("geolocate_map").markers).map (i, marker) ->
+        return marker.gmark
+
   $.fn.geolocateMap = (method) ->
 
     if methods[method]

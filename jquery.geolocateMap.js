@@ -12,7 +12,7 @@
       this.markers = Marker.markers_from_objects(this.map, settings['markers'], settings['markers_settings']);
       markers_options = settings['markers_settings'];
       if (markers_options['fit_bounds']) {
-        if (this.markers.length > 2) {
+        if (this.markers.length >= 2) {
           this.map.fitBounds(Marker.bounds_for_markers(this.markers));
         } else if (this.markers.length === 1) {
           this.map.setCenter(this.markers[0].get_position());
@@ -59,6 +59,14 @@
         var settings;
         settings = $.extend(true, {}, defaults, args);
         return this.data("geolocate_map", new GeolocateMap(this, settings));
+      },
+      google_map: function() {
+        return this.data("geolocate_map").map;
+      },
+      google_markers: function() {
+        return $(this.data("geolocate_map").markers).map(function(i, marker) {
+          return marker.gmark;
+        });
       }
     };
     return $.fn.geolocateMap = function(method) {

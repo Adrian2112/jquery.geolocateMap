@@ -7,7 +7,7 @@ class GeolocateMap
     markers_options = settings['markers_settings']
 
     if markers_options['fit_bounds']
-      if @markers.length > 2
+      if @markers.length >= 2
         @map.fitBounds(Marker.bounds_for_markers(@markers))
       else if @markers.length == 1
         @map.setCenter(@markers[0].get_position())
