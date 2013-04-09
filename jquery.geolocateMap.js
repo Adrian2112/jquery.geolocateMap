@@ -97,7 +97,6 @@
       settings = $.extend({}, settings, data, marker_position);
       this.gmark = new google.maps.Marker(settings);
       if (data["infoWindow"]) {
-        console.log(data["infoWindow"], map, this.gmark);
         infowindow = new google.maps.InfoWindow({
           content: data["infoWindow"]
         });
