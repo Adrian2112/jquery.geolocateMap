@@ -85,7 +85,8 @@
     function Marker(map, data, settings) {
       this.sync_inputs = __bind(this.sync_inputs, this);
 
-      var latitude, longitude, marker_position, pos;
+      var infowindow, latitude, longitude, marker_position, pos,
+        _this = this;
       latitude = data['lat'];
       longitude = data['lng'];
       pos = new google.maps.LatLng(latitude, longitude);
@@ -95,6 +96,15 @@
       };
       settings = $.extend({}, settings, data, marker_position);
       this.gmark = new google.maps.Marker(settings);
+      if (data["infoWindow"]) {
+        console.log(data["infoWindow"], map, this.gmark);
+        infowindow = new google.maps.InfoWindow({
+          content: data["infoWindow"]
+        });
+        google.maps.event.addListener(this.gmark, 'click', function() {
+          return infowindow.open(map, _this.gmark);
+        });
+      }
       this.sync_inputs(settings);
     }
 

@@ -15,6 +15,7 @@
       # {
       #   lat: 'latitude'
       #   lng: 'longitude'
+      #   infoWindow: 'text' // html that want to be displayed when the marker is clicked
       #   other google api marker options
       #   (this options overrides the markers_settings just for this marker)
       #

@@ -17,6 +17,17 @@ class Marker
     settings = $.extend({}, settings, data, marker_position)
 
     @gmark = new google.maps.Marker(settings)
+    
+    #
+    # infoWindow overlay
+    #
+    if data["infoWindow"]
+      console.log data["infoWindow"], map, @gmark
+      infowindow = new google.maps.InfoWindow({ content: data["infoWindow"] })
+
+      google.maps.event.addListener @gmark, 'click', =>
+        infowindow.open(map,@gmark)
+    
     @sync_inputs(settings)
 
   get_position: ->

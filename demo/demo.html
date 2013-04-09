@@ -199,6 +199,20 @@
       </script>
   
     </div>
+
+    <div class="example">
+      <h2>InfoWindow overlay</h2>
+      <div id="map6" style="height:300px;"></div>
+      <script type="text/javascript" charset="utf-8">
+        $("#map6").geolocateMap({
+          markers: [
+            {"lat":"17.07714402", "lng":"-96.71353313", "infoWindow": "Place #1"},
+            {"lat":"17.068128422248872", "lng":"-96.7195987701416", "infoWindow": "Place #2"}
+          ]
+        });
+      </script>
+  
+    </div>
   
   </div>
 </body>
